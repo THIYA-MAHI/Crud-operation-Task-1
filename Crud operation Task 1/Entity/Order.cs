@@ -1,26 +1,34 @@
-﻿namespace Crud_operation_Task_1.Entity
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Crud_operation_Task_1.Entity
 {
     public class Order
     {
-            public int Id { get; set; }
+        public int Id { get; set; }
 
-            public int CustomerId { get; set; }
+        [ForeignKey("Customer")]
+        public int CustomerId { get; set; }
 
-            public int ProductId { get; set; }
+        [ForeignKey("Product")]
+        public int ProductId { get; set; }
 
-            public int Quantity { get; set; }
+        public int Quantity { get; set; }
 
-            public decimal TotalPrice { get; set; }
+        public decimal TotalPrice { get; set; }
 
-            public DateTime OrderDate { get; set; } = DateTime.Now;
+        public DateTime OrderDate { get; set; } = DateTime.Now;
 
-            public OrderStatus Status { get; set; } = OrderStatus.Pending;
-        
-    }
-    public enum OrderStatus
-    {
-        Pending,
-        Completed,
-        Cancelled
+        public OrderStatus Status { get; set; } = OrderStatus.Pending;
+
+        public Customer Customer { get; set; }
+        public Product Product { get; set; }
+
+
+        public enum OrderStatus
+        {
+            Pending,
+            Completed,
+            Cancelled
+        }
     }
 }
